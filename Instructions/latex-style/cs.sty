@@ -1,0 +1,317 @@
+\ProvidesPackage{cs}[2006/12/18]
+
+% Initial code
+\setlength{\textheight}{245mm}
+\newlength{\titlesep}
+\newcommand\university[1]{\def\university@{#1}}
+\newcommand\department[1]{\def\department@{#1}}
+\newcommand\logo[1]{\def\logo@{#1}}
+\newcommand\subtitle[1]{\def\subtitle@{#1}}
+\subtitle{}
+\def\provideenvironment{\@star@or@long\provide@environment}
+\def\provide@environment#1{%
+  \ifx\csname#1\endcsname\relax%
+  \else%
+  \expandafter\let\csname#1\endcsname\relax%
+  \expandafter\let\csname end#1\endcsname\relax%
+  \fi%
+  \new@environment{#1}%
+}%
+\DeclareOption{swedish}{%
+  \PassOptionsToPackage{swedish}{babel}
+  \AtBeginDocument{\def\bbl@main@language{swedish}}
+  \logo{LTH_V_SV_win}
+  \university{Lunds universitet}
+  \def\school@{}
+  \department{Datavetenskap\school@}
+  \def\longdepartment@{Institutionen f\"or \department@}
+  \def\addresstextiii@{Box 118, 221 00 Lund}
+  \def\addresstextiiii@{\office@}
+  \def\phonetext@{telefon}
+  \def\mobiletext@{mobil}
+  \def\emailtext@{e-post}
+  \def\homepagetext@{hemsida}
+  \def\officetext@{kontor}
+  \def\secretarytext@{sekreterare}
+  \def\secretary@{46-22 28040}
+  \def\countrycode@{0}
+  \def\@date{\number\year-\two@digits\month-\two@digits\day}
+  \def\solutiontext{L\"osningar}
+}
+\DeclareOption{english}{%
+  \PassOptionsToPackage{english}{babel}
+  \AtBeginDocument{\def\bbl@main@language{english}}
+  \logo{lomacvsve}
+  \university{Lund University}
+  \department{Computer Science}
+  \def\longdepartment@{Department of \department@}
+  \def\addresstextiii@{Box 118, Lund}
+  \def\addresstextiiii@{SE-221 00 SWEDEN}
+  \def\phonetext@{phone}
+  \def\mobiletext@{mobile}
+  \def\emailtext@{email}
+  \def\officetext@{office}
+  \def\secretarytext@{secretary}
+  \def\homepagetext@{home page}
+  \def\mailtext@{mail}
+  \def\countrycode@{+46(0)}
+  \def\solutiontext{Solutions}
+}
+\DeclareOption{logo}{%
+  \setlength{\titlesep}{12mm}
+  \def\head@{\logoheader@}
+}
+\DeclareOption{utf8}{%
+  \PassOptionsToPackage{utf8}{inputenc}
+}
+\DeclareOption{latin1}{%
+  \PassOptionsToPackage{latin1}{inputenc}
+}
+\DeclareOption{textheader}{%
+  \def\head@{\textheader@}
+}
+\DeclareOption{noheader}{%
+  \def\head@{\hfil}
+}
+\DeclareOption{addressfoot}{%
+  \def\foot@{\addressfoot@}
+  \addtolength{\textheight}{-5mm}
+}
+\DeclareOption{nofoot}{%
+  \def\foot@{}
+}
+\DeclareOption{nbrfoot}{%
+  \def\foot@{\hfil\textrm{\thepage}\hfil}
+}
+\DeclareOption{lth}{%
+  \def\school@{, LTH}
+}
+\DeclareOption{nofaculty}{%
+  \def\school@{}
+}
+\DeclareOption{LTH}{%
+  \def\university@{Lunds Tekniska H\"ogskola}
+}
+\DeclareOption{Lth}{%
+  \def\university@{Lunds tekniska h\"ogskola}
+}
+\DeclareOption{nf}{%
+  \def\school@{, NatFak}
+  \def\secretary@{46-22 28034}
+}
+\DeclareOption{letter}{%
+  \def\head@{\letterheader@{\rmfamily\@ddressee}}
+  \def\foot@{\addressfoot@}
+  \setlength{\titlesep}{20mm}
+  % \addtolength{\textheight}{-5mm}
+}
+\DeclareOption{sansserif}{%
+  % bold sans serif section headers
+  \def\titlefont@{\sbfont@}
+  \def\section{\@startsection {section}{1}{\z@}{-3.5ex plus -1ex minus
+      -.2ex}{2.3ex plus .2ex}{\LARGE\sbfont@}}
+  \def\subsection{\@startsection {subsection}{2}{\z@}{-3.25ex plus -1ex
+      minus -.2ex}{1.5ex plus .2ex}{\large\sbfont@}}
+  \def\subsubsection{\@startsection {subsubsection}{3}{\z@}{-3.25ex plus
+      -1ex minus -.2ex}{1.5ex plus .2ex}{\normalsize\sbfont@}}
+  \def\paragraph{\@startsection%
+    {paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}{-1em}{\normalsize\sbfont@}}
+}
+\DeclareOption{serif}{%
+  \def\titlefont@{}
+}
+\DeclareOption{parskip}{%
+  \setlength{\parindent}{0em}
+  \setlength{\parskip}{2mm plus 2mm}
+}
+\DeclareOption{parindent}{%
+  \setlength{\parindent}{1em}
+  \setlength{\parskip}{0mm}
+}
+\DeclareOption{a4}{%
+  \setlength{\paperheight}{297mm}
+  \setlength{\paperwidth}{210mm}
+  \setlength{\topmargin}{-19mm}
+  \setlength{\headsep}{15mm}
+  \setlength{\oddsidemargin}{0mm}
+  \setlength{\evensidemargin}{0mm}
+  \setlength{\textwidth}{160mm}
+  \setlength{\marginparwidth}{18mm}
+  \pdfvorigin= 25mm
+  \pdfhorigin= 31mm
+  \pdfpageheight= 297mm
+  \pdfpagewidth= 210mm
+}
+\DeclareOption{a4paper}{%
+  \setlength{\paperheight}{297mm}
+  \setlength{\paperwidth}{210mm}
+  \setlength{\topmargin}{17.0pt}
+  \setlength{\headsep}{25.0pt}
+  \setlength{\oddsidemargin}{53.0pt}
+  \setlength{\evensidemargin}{54.0pt}
+  \setlength{\textwidth}{345.0pt}
+  \setlength{\textheight}{598.0pt}
+  \setlength{\marginparwidth}{57.0pt}
+  \pdfvorigin= 25mm
+  \pdfhorigin= 31mm
+  \pdfpageheight= 297mm
+  \pdfpagewidth= 210mm
+}
+
+\ExecuteOptions{textheader,nbrfoot,parskip,sansserif,a4,swedish}
+\ProcessOptions*
+\RequirePackage{inputenc}
+\RequirePackage{babel}
+\RequirePackage{graphicx}
+% Main code
+\newcommand{\ps@first}{%
+  \renewcommand{\@oddhead}{\head@}%
+  \renewcommand{\@evenhead}{\head@}%
+  \renewcommand{\@oddfoot}{\foot@}%
+  \renewcommand{\@evenfoot}{\foot@}%
+}
+\thispagestyle{first}
+\newenvironment{letter}[1]{%
+  \def\@ddressee{#1}
+  \catcode`\"12
+  \newpage
+  \thispagestyle{first}
+  \vspace*{\titlesep}
+  \setcounter{page}{1}%
+  \list{}{\listparindent 0em%
+    \leftmargin \lettermargin@%
+    \itemindent    \listparindent
+    \rightmargin   \leftmargin
+    \parsep        2mm plus 2mm}%
+\item\relax
+}
+{\endlist
+  \eject
+}
+\providecommand\infolabel[1] {%
+  \raisebox{0pt}[1ex][0pt]{\makebox[\labelwidth][l]%
+    {\parbox[t]{\labelwidth}{\hspace{0pt}\raggedright\sbfont@#1}}}}%
+\newenvironment{info}[1][6em]{
+  \begin{list}{}
+    {\renewcommand{\makelabel}{\infolabel}
+      \setlength{\labelwidth}{#1}
+      \setlength{\leftmargin}{\labelwidth}
+      \addtolength{\leftmargin}{\labelsep}
+      \setlength{\itemindent}{0pt}
+      \setlength{\listparindent}{0pt}
+    }
+  }
+  {\end{list}}
+\renewcommand\maketitle[1][\hfil]{
+  \catcode`\"12
+  \addrighthead{\@date}%
+  \vspace*{-10mm}
+  \section*{#1\@title}%
+}
+\providecommand\points[1]{~~\nobreak\hfill(#1p)}
+\providecommand\opening[1]{\vspace{20mm}#1\par}
+\providecommand\closing[1]{\par\nobreak\vspace{10mm}
+  \hspace*{20mm\parbox{80mm}{#1\\[6\medskipamount]\sign@ture}}}
+\providecommand\signature[1]{\def\sign@ture{#1}}
+\newcommand\righthead[1]{\def\righthead@{#1\cr}}\def\righthead@{}
+\newcommand\addrighthead[1]{\edef\righthead@{\righthead@ #1\cr}}
+\newcommand\lefthead[1]{\def\lefthead@{#1\cr}}
+\lefthead{\university@\cr \department@ \cr \@author}
+\newcommand\addlefthead[1]{\edef\lefthead@{\lefthead@ #1\cr}}
+\newcommand\rightfoot[1]{\def\rightfoot@{#1\cr}}\def\rightfoot@{}
+\newcommand\addrightfoot[1]{\edef\rightfoot@{\rightfoot@ #1\cr}}
+\newcommand\leftfoot[1]{\def\leftfoot@{#1\cr}}
+\leftfoot{\addressi@\cr \addressii@\cr\addressiii@\cr \addressiiii@}
+\newcommand\addleftfoot[1]{\edef\leftfoot@{\leftfoot@ #1\cr}}
+\newcommand\middlefoot[1]{\def\middlefoot@{#1\cr}}\def\middlefoot@{}
+\newcommand\addmiddlefoot[1]{\edef\middlefoot@{\middlefoot@ #1\cr}}
+\leftfoot{\department@\cr \university@\cr \addresstextiii@\cr \addresstextiiii@}
+\newcommand\phone[1]{\addmiddlefoot{\phonetext@: \countrycode@#1}}
+\newcommand\mobile[1]{\addmiddlefoot{\mobiletext@: \countrycode@#1}}
+\newcommand\secretary[1][\secretary@]{\addmiddlefoot{\secretarytext@: \countrycode@ #1}}
+\newcommand\fax[1][46-21 31021]{\addmiddlefoot{fax: \countrycode@#1}}
+\newcommand\office[1]{\def\office@{\officetext@: #1}}\def\office@{}
+\newcommand\diaryno[1]{\def\diaryno@{#1}}\def\diaryno@{\ }
+\newcommand\homepage[1]{\setbox0=\hbox{\_}\addrightfoot{\homepagetext@:
+    \hbox{#1}}}
+\newcommand\ename[1]{\addrightfoot{\emailtext@: #1{@}cs.lth.se}}
+\newcommand\ruleskip{\medskip\hrule\medskip}
+\newdimen\lettermargin@
+\newcommand\lettermargin[1]{\def\lettermargin@{#1}}
+\lettermargin{.1\textwidth}
+
+\def\sign@ture{\ }
+\def\sbfont@{\sffamily\bfseries}
+\def\@ddressee{}
+\def\textheader@{%
+  \textsf{\small\renewcommand\tabcolsep{0mm}%
+    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}%
+      \@tabt{l}{\lefthead@}&
+      \@tabt{r}{\righthead@}
+    \end{tabular*}%
+  }%
+}
+\newcommand\logoheader@{%
+  \sffamily
+  \begin{tabular*}{\textwidth}[b]{l@{\extracolsep{\fill}}l}%
+    \scriptsize
+    \@tabt{l}{\null\\\hspace*{-1.5mm}%
+      \includegraphics[width=40mm]{\logo@}\\[-1mm]
+      \longdepartment@\\\@author}&
+    \small
+    \@tabt{r}{\righthead@}
+  \end{tabular*}%
+}
+\def\addressfoot@{%
+  \sffamily\scriptsize\renewcommand\tabcolsep{0mm}%
+  \begin{tabular*}{\textwidth}[t]{l*{2}{@{\extracolsep{\fill}}l}}%
+    \hline%
+    \@tabt{l}{\leftfoot@}&
+    \@tabt{l}{\middlefoot@}&
+    \@tabt{l}{\rightfoot@}
+  \end{tabular*}%
+}
+\newcommand\letterheader@[1]{%
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}l@{\hspace{\lettermargin@}}}%
+    {\sffamily\small
+      \@tabt{l}{\null\\\hspace*{-1.5mm}%
+        \includegraphics[width=56mm]{\logo@}\\[-1mm]
+        \longdepartment@\\\@author}
+    }%
+    &
+    \@tabt{l}{\cr\@date\hfill \diaryno@\cr\cr\cr\cr\cr\cr\cr\cr#1}
+  \end{tabular*}%
+}
+\newcommand\@tabt[2]{%
+  \renewcommand\arraystretch{0.8}%
+  \begin{tabular}[t]{@{}#1}%
+    #2
+  \end{tabular}%
+}%
+\provideenvironment{example}{\begin{quote}\textbf{Exempel.}}{$\Diamond$\end{quote}}%
+ \provideenvironment{lemmax}{\begin{quote}\textbf{Lemma.}}{$\blacksquare$\end{quote}}%
+\provideenvironment{theorem}{\begin{quote}\textbf{Sats.}}{$\blacksquare$\end{quote}}%
+\provideenvironment{definition}{\begin{quote}\textbf{Definition.}}{\hfill$\triangle$\end{quote}}%
+\provideenvironment{axiom}{\par\textbf{Axiom.}}{$\Delta$\par}%
+\newcounter{problem}[section]
+\newenvironment{problems}{%
+  \renewcommand\labelenumi{\textbf{\theenumi}}%
+  \renewcommand\labelenumii{\textbf{\theenumii.}}%
+  \begin{enumerate}
+  }
+  {\end{enumerate}
+}
+
+%%% added Jesper/NF 2014
+\usepackage{amssymb,marginnote}
+\reversemarginpar
+\newcommand{\labsymbol}{\Large{$\vartriangleright$}}
+\newcommand{\prepsymbol}{\Large{$\blacktriangleright$}}
+\newcommand{\optsymbol}{\large{$\bigstar$}}
+\newcommand{\labtask}[1][]{\marginnote{#1\labsymbol}[2mm]}
+\newcommand{\preptask}[1][]{\marginnote{#1\prepsymbol}[2mm]}
+\newcommand{\opttask}[1][]{\marginnote{#1\optsymbol}[2mm]}
+\newcommand{\opttasktext}{\opttask \textbf{\emph{Optional. }}}
+
+% TODO macro, added by NF 2014
+\newcommand{\todo}[1]{\fbox{\parbox{1\textwidth}{\emph{\textbf{TODO:} #1}}}}

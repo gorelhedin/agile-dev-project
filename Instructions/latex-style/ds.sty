@@ -1,0 +1,111 @@
+\usepackage{amsmath,amssymb,array,prooftree,listings,alltt,amsthm,url,boxedminipage,fancyvrb,ifthen}
+\usepackage[normalem]{ulem}
+\usepackage{synttree}
+\usepackage{pict2e}
+% \usepackage{epic}
+\newcommand{\B}{\mathbb B}
+\newcommand{\Equivalent}{\Leftrightarrow}
+\newcommand{\F}{\textsf{F}}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\T}{\textsf{T}}
+\newcommand{\Z}{\mathbb Z}
+\providecommand{\alt}{\,\rule{.2mm}{4mm}\,}
+\renewcommand{\l}[1]{\lambda#1.}
+\newcommand{\backsl}{$\backslash$}
+\newcommand{\bemptyset}{\boldsymbol\emptyset}
+\newcommand{\bepsilon}{\boldsymbol\epsilon}
+\newcommand{\blank}{\leavevmode\hbox{\ttfamily\char`\ }}
+\newcommand{\bsigma}{\boldsymbol\sigma}
+\newcommand{\datum}{\@date}
+\newcommand{\defines}{\;\stackrel\vartriangle=\;}
+\newcommand{\dom}{\textrm{dom}\,}
+\newcommand\eng[1]{(\emph{#1})}
+\newcommand{\equivalent}{\leftrightarrow}
+\newcommand{\fall}[1]{\forall #1\, .\,}
+\newcommand{\f}{\emph{false}}
+\newcommand{\hyprr}[1]{[\!\!\!\!\smallsetminus#1\smallsetminus\!\!\!]}
+\newcommand{\hypr}[1]{\mbox{\sout{$[#1]$}}}
+\newcommand{\hyp}[2]{\begin{array}[b]{c}\hypr{#1}\\\vdots\\#2\end{array}}
+\newcommand{\litbe}[1]{\texttt{"#1"}}
+\newcommand{\litb}[1]{\texttt{"#1" }}
+\newcommand{\lite}[1]{\texttt{ "#1"}}
+\newcommand{\lit}[1]{\texttt{ "#1" }}
+\newcommand{\lst}[1]{[#1]}
+\newcommand{\nand}{\uparrow}
+\newcommand{\ran}{\textrm{ran}\,}
+\newcommand{\rhorel}[2]{#1\mathop{\rho}#2}
+\newcommand{\sett}[1]{\lbrace\,\texttt{#1}\,\rbrace}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\sL}[1]{{\cal L}[\![#1]\!]}
+\newcommand{\stp}{\;.\;}
+\newcommand{\st}{\;|\;}
+\newcommand{\subst}[2]{[#1\backslash #2]}
+\newcommand{\texi}[1]{\exists #1\, .\,}
+\newcommand{\xmid}{\smallsetminus\!\!\![}
+\renewcommand{\L}{{\cal L}}
+\renewcommand{\implies}{\rightarrow}
+\renewcommand{\today}{\number\year-\two@digits\month-\two@digits\day}
+\def\pair<#1>{\langle\,#1\,\rangle}
+\newenvironment{grammar}[1][\rightarrow]{$\begin{array}{*{3}{l!{#1}l@{\qquad}}}}{\end{array}$}
+%\newenvironment{grammar}{$\begin{array}{*{3}{l!{\rightarrow}l}}}{\end{array}$}
+\newenvironment{astgrammar}{$\begin{array}{*{3}{l!{::=}l}}}{\end{array}$}
+\newenvironment{Grammar}{\textbf{CFG}\par
+  $\begin{array}{*{3}{l!{\rightarrow}l}}}{\end{array}$}
+\newenvironment{astGrammar}{\textbf{Abstract grammar}\par\obeylines}{\vfill}
+\newenvironment{api}[1]
+{\textbf{#1}\\ \begin{list}{}{\setlength{\leftmargin}{10.0mm}\item}}
+  {\end{list}\vfill}
+\def\ff{\textbf{ff}}
+\def\fun{{\bf fun\ }}
+\def\ll{$\lambda$}
+\def\numeral#1{\ ^\lceil#1^\rceil}
+\def\sap[#1]{{\cal S}_{ap}[\![#1]\!]}
+\def\scs[#1]{{\cal S}_{cs}[\![#1]\!]}
+\def\sds[#1]{{\cal S}_{ds}[\![#1]\!]}
+\def\sns[#1]{{\cal S}_{ns}[\![#1]\!]}
+\def\sos[#1]{{\cal S}_{sos}[\![#1]\!]}
+\def\scs[#1]{{\cal S}_{cs}[\![#1]\!]}
+\def\syn[#1]{[\![#1]\!]}
+\def\synt[#1]{[\![\texttt{#1}]\!]}
+\def\tt{\textbf{tt}}
+\def\wp[#1]{{\cal S}_{\mathrm{wp}}[\![#1]\!]}
+\def\wpt[#1]{{\cal S}_{\mathrm{wp}}[\![\texttt{#1}]\!]}
+\newcommand{\seq}[1][\Gamma]{#1\vdash}
+\newcommand\bottom{\perp}
+\newcommand{\ared}{\red{\alpha}}
+\newcommand{\axi}[3]{$\lbrace#1\rbrace$\textit{ #2 }$\lbrace#3\rbrace$}
+\newcommand{\ax}[3]{$\lbrace#1\rbrace$\texttt{ #2 }$\lbrace#3\rbrace$}
+\newcommand{\bred}{\red{\beta}}
+\newcommand{\red}[1]{\longrightarrow_#1}
+\newcommand{\sq}{\sqsubseteq}
+\newenvironment{inference}{\begin{quote}\textbf{Inferensregel.}}{$\blacktriangledown$\end{quote}}%
+\newenvironment{sgrammar}[1][$\rightarrow$]{\renewcommand{\alt}{\ensuremath{\;\mid\;\;}}
+  \sffamily\begin{tabular}{l!{#1}l}}{\end{tabular}}
+\newcommand{\grule}[1]{{\sffamily\begin{tabular}{l!{$\rightarrow$}l}#1\end{tabular}}}
+\renewcommand{\lit}[1]{\textsf{'#1'}}
+\newenvironment{derivation}{\sffamily\renewcommand{\R}{\quad$\Rightarrow$\quad}\begin{tabular}{ll}}{\end{tabular}}
+\newcommand\bull{\ensuremath{\bullet}}
+\newcommand\eps{\ensuremath{\epsilon}}
+% \def\lop#1\to#2{\expandafter\lopoff#1\lopoff#1#2}
+% \long\def\lopoff,#1,#2\lopoff#3#4{\def#4{#1}\def#3{,#2}}
+% \def\@@mlistempty{,}
+% \newif\iflistnonempty
+% \def\multiputlist(#1,#2)(#3,#4){\@ifnextchar
+%   [{\@imultiputlist(#1,#2)(#3,#4)}{\@imultiputlist(#1,#2)(#3,#4)[]}}
+% \long\def\@imultiputlist(#1,#2)(#3,#4)[#5]#6{{%
+%     \@xdim=#1\unitlength \@ydim=#2\unitlength
+%     \listnonemptytrue \def\@@mlist{,#6,} % need this for end condition
+%     \loop
+%     \lop\@@mlist\to\@@firstoflist
+%     \@killglue\raise\@ydim\hbox to\z@{\hskip
+%       \@xdim\@imakepicbox(0,0)[#5]{\@@firstoflist}\hss}
+%     \advance\@xdim #3\unitlength\advance\@ydim #4\unitlength
+%     \ifx\@@mlist\@@mlistempty \listnonemptyfalse\fi
+%     \iflistnonempty
+%     \repeat\relax
+%     \ignorespaces}}
+  \newtheorem{sats}{Sats}
+  \newtheorem{exempel}{Exempel}
