@@ -23,62 +23,89 @@
 
 Estimated time: 2 days. We suggest splitting this into 4 half-day meetings.
 
-Work in teams of 2-4 persons. Try to get at least one team member with experience from agile software development.
+Work in teams of 2-4 persons. Try to get at least one team member with experience from agile software development and someone with experience from programming in Java.
 
 \section*{Introduction}
 
-The goal is that you should set up and experiment with a development tool chain with version control, issue tracking, automated test and build, and continuous integration. If you are already very experienced in this area, take the opportunity to try out some new tools, and to coach your team members.
+The goal is that you should set up and experiment with a development tool chain with version control, issue tracking, automated test and build, code review, and continuous integration. If you are already very experienced in this area, take the opportunity to try out some new tools, and to coach your fellow team members.
 
-You will work in iterations, and build a tiny code product in Java, and use Java-based tools. After this assignment, you should be able to build a similar tool chain for your own work, and find tools suitable for the language you use. 
+You will work in iterations and in very small development steps. You will build a tiny code product in Java, and use a public GitHub repository. In principle, you could work in another language, on a private repository, and using another version control service than GitHub, but you would then have to find alternatives to several of the tools suggested below. After this assignment, you should be able to build a similar tool chain for your own work, and find tools suitable for the language you use. 
 
 For each of the iterations, work together as a team, and sit co-located. We expect each iteration to take around a half day, but some may be shorter and others longer.
 
-Code product: Pig Latin translator.
-Implement a Java program that translates English words to Pig Latin. See \url{https://en.wikipedia.org/wiki/Pig_Latin}
+At the end of each iteration, your should reflect briefly on your work, and document this on a project wiki. 
 
-We expect a usable, well-tested, but very tiny product as the result. You are expected to complete at least up to Iteration 3.
+As a result of the assignment, we expect a usable, well-tested, but very tiny product. As the product, we suggest a tool/game that can translate English words to \emph{Pig Latin}. See \url{https://en.wikipedia.org/wiki/Pig_Latin}. Feel free to select another product, but in that case, make sure you can provide something useful with very little development, and that the development can be split into many small features.
 
-\subsection*{Iteration 1 (First iteration)}
-- Set up a git repo for the product on GitHub. Make it a public repository (you will need this later for the continuous integration tool we will use). Add a README and a .gitignore file.
+You are expected to complete at least up to and including Iteration 3.
 
-- Implement version v0.1 of your product. It should be the simplest possible version of the product that you can think of and it should be executable. For example, just read one word from the command line and output a constant pig latin word, disregarding the input. You will be able to create one working test case.
+\subsection*{Iteration 1 (Getting Started)}
+The goal of the first iteration is to get into the normal state of a working product, albeit with extremely little functionality.
 
-- Identify a number of possible features to add to the product, and add these as issues in the IssueTracker. Try to make the features as small as possible, yet represent something of use for the end user. For example,
-  - use real Pig Latin
-  - handle many words in a row, not just a single word
-  - read from an input file
-  - treat punctuation correctly
-  - support a reverse translator
-  - make it into a game
-  - ...
+\begin{enumerate}
 
-- Implement one JUnit test for the version v0.1 product.
+\item Set up a git repository for the product on GitHub. Make it public (you will need this later for the continuous integration tool we will use). Add a \verb'README' and a \verb'.gitignore' file. Make sure there is a wiki and an issue tracker associated with the repository.
 
-- Implement one acceptance test for the version v0.1 product.
+\item Implement version \verb'v0.1' of your product. It should be the simplest possible version of the product that you can think of and it should be executable. For example, just read one word from the command line and output a constant pig latin word, disregarding the input. You should be able to create one working acceptance test case.
 
-- Implement an Ant build script from which you can
-  - build the product (produce a jar file)
-  - clean away generated files
-  - run the tests
+\item Identify around 10 possible features to add to the product, and add these as issues in the issue tracker for the GitHub repository. Try to make the features as small as possible, yet represent something of use for the end user. For bigger features, you can break them into smaller features later. Some example features:
+\begin{itemize}
+\item handle Pig Latin for words starting with a consonant
+\item handle Pig Latin for words starting with a vowel
+\item handle many words in a row, not just a single word
+\item read from an input file
+\item treat punctuation correctly
+\item support a reverse translator
+\item make it into a game
+\item ...
+\end{itemize}
 
-- Add a README.md to explain how to build, run, and test the product. And check that it works from a new clone of the product. The README should also document any platform dependencies and dependencies on installed tools. For any subsequent changes to the product, make sure to update the README so that it is consistent.
+\item Implement one JUnit test for the \verb'v0.1'  product.
 
-- Tag the resulting version with "v0.1".
+\item Implement one acceptance test for the \verb'v0.1'  product.
+
+\item Implement a build script, for example using Ant, from which you can
+\begin{itemize}
+  \item build the product (produce a jar file)
+  \item clean away generated files
+  \item run the tests
+\end{itemize}
+
+\item The \verb'README' file should explain how to build, run, and test the product. Make a new clone of the project and check that the instructions work. The \verb'README' should also document any platform dependencies and dependencies on installed tools. For any subsequent changes to the product, make sure to update the \verb'README' so that it is consistent.
+
+\item Tag the resulting version with \verb'v0.1'.
+
+\item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\end{enumerate}
 
 \section*{Iteration 2 (Test-Driven Development)}
+In the second iteration, you should implement some of the features you have listed on your issue tracker. You should practice working in \emph{small steps} using \emph{test-driven development}, and \emph{integrating often}. Try to commit often, after completing a small step. As soon as you have a small improvement and all tests work, push your changes to the common repository. After this iteration, each team member should have pushed several times, and the product should have a little more functionality, and there should be good test cases with good coverage.
 
-- Implement a couple of simple stories using TDD. 
-- Generalize your test harness as needed.
-- Add issues as needed. For example, if you find bugs, identify need for generalization or refactorings, or come to think of new possible additions.
-- Commit and push often, but only when your sandbox is "green" and you have recently pulled the latest changes by others. For each commit, relate to the relevant issue in the commit comment (e.g., using "see ..." or "fixes ...").
-- If you didn't get any merge conflicts naturally, provoke some, just to get the hang of how to handle them.
-- Experiment with git rebase to collapse commits before pushing.
+\begin{enumerate}
+\item Work in parallel so that you get some merge conflicts. Communicate with each other so everyone knows what goes on, who implements what features, etc. Feel free to pair program if you like.
+\item Use Test-Driven Development. Add both acceptance and JUnit tests.
+\item Generalize your test harness as needed.
+\item Add issues as needed, for bugs, refactorings, and other work unrelated to your current issue, and for new features that you come to think of. 
+\item Commit and push often, but only when your sandbox is ''green'' (all tests pass), and when you have recently pulled and merged the latest changes from the common repository. For each commit, relate to the relevant issue in the commit comment (e.g., using "see ..." or "fixes ...").
+\item If you didn't get any merge conflicts naturally, provoke some, just to get the hang of how to handle them.
+%\item Experiment with git rebase to collapse commits before pushing.
+\item Tag the resulting version with \verb'v0.2'.
+\item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\end{enumerate}
 
-- Tag the resulting version with "v0.2".
+\section*{Iteration 3 (Code Review, Continuous Integration)}
+In iteration 3, you will continue doing test-driven development, but now also focus on \emph{clean code} (well designed, easy to understand). You will extend the tool chain with \emph{code review} and use a \emph{continuous integration} server. In this iteration you will also review another team's product and propose a small change to it.
 
-\section*{Iteration 3 (Pull requests, Code Review, Continuous Integration)}
+After this iteration, each team member should have been involved in both sides of a code review, and should have some insight into continuous integration.
 
-
+\begin{enumerate}
+\item Discuss the current design. Is the code clean? Is there a need for larger refactorings? Do you need to agree on some design issues or coding conventions? Is there a need for some design documentation, like a photo of a design on the blackboard? (If so, you can upload it to the wiki.)
+\item Continue the development, but now all additions should be done on separate \emph{feature branches}, and merged into the master branch only after code review. After pushing your commits on the feature branch, ask for code review by creating a so called \emph{pull request} on GitHub (on GitLab it is called \emph{merge request}). Experiment with some discussion back and forth between the reviewer and the author.
+\item Set up online continuous integration using Travis. Each time a push is done to the master branch, Travis should run all the tests on that version, and email any problems to the team. If you are workning in a private repository or on some other hosting than GitLab, you will need to set up your own integration server, for example Hudson or Jenkins. Experiment with pushing code with errors so you see that the Travis integration works.
+\item Tag the resulting version with \verb'v0.3'.
+\item Review another team's product. Do this by forking their repository and try to run their product. Inspect their code. Identify some detail you would like to improve in the code, or the \verb'README', or any other file. Make the change to your forked repository and send them a pull request, asking them to integrate your changes. If they like your proposal they can integrate it, and otherwise just turn it down.
+\item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\end{enumerate}
 
 \section*{Iteration 4 (More advanced testing)}
 
