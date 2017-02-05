@@ -37,7 +37,7 @@ At the end of each iteration, your should reflect briefly on your work, and docu
 
 As a result of the assignment, we expect a usable, well-tested, but very tiny product. As the product, we suggest a tool/game that can translate English words to \emph{Pig Latin}. See \url{https://en.wikipedia.org/wiki/Pig_Latin}. Feel free to select another product, but in that case, make sure you can provide something useful with very little development, and that the development can be split into many small features. One possibility is to take last fall's course as the starting point. However, in that case you should start with a fresh repository and gradually bring over code from your old one, so that everything in the new repository will be well tested.
 
-You are expected to complete at least up to and including Iteration 3.
+You are expected to complete at least up to and including Iteration 4.
 
 \subsection*{Iteration 1 (Getting Started)}
 The goal of the first iteration is to get into the normal state of a working product, albeit with extremely little functionality.
@@ -100,21 +100,30 @@ Do the following in this iteration:
 \item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
 \end{enumerate}
 
-\section*{Iteration 3 (Code Review, Continuous Integration)}
-In iteration 3, you will continue doing test-driven development, but now also focus on \emph{clean code} (well designed, easy to understand). You will extend the tool chain with \emph{code review} and use a \emph{continuous integration} server. In this iteration you will also review another team's product and propose a small change to it.
+\section*{Iteration 3 (Code Review)}
+In iteration 3, you will continue doing test-driven development, but now also focus on \emph{clean code} (well designed, easy to understand). You will extend the tool chain with \emph{code review}.
 
-After this iteration, each team member should have been involved in both sides of a code review, and should have some insight into continuous integration. The code should be beautiful and well tested.
+After this iteration, each team member should have been involved in both sides of a code review, and the code should be beautiful and well tested.
 
 \begin{enumerate}
 \item Discuss the current design. Is the code clean? Is there a need for larger refactorings? Do you need to agree on some design issues or coding conventions? Is there a need for some design documentation, like a photo of a design on the blackboard? (If so, you can upload it to the wiki.)
 \item Continue the development, but now all changes should be done on separate \emph{feature branches}, and merged into the master branch only after code review. After pushing your commits on the feature branch, ask for code review by creating a so called \emph{pull request} on GitHub (on GitLab it is called \emph{merge request}). Experiment with some discussion back and forth between the reviewer and the author.
-\item Set up online continuous integration using \emph{Travis}. Travis should run all the tests on the latest version of the master branch each time a push is done to it. If there are any problems, Travis should email the team. If you are working in a private repository or on some other hosting than GitHub, you will need to set up your own integration server, for example Hudson or Jenkins. Experiment with pushing code with errors so you see that the continuous integration works.
 \item Tag the resulting version with \verb'v0.3'.
-\item Review another team's product. Do this by forking their repository and try to run their product. Is it easy to install? Does it work? Is there something in the code or documentation that could be improved? Identify some detail you would like to improve. Make the change to your forked repository and send them a pull request, asking them to integrate your changes. If they like your proposal they can integrate it, and otherwise just turn it down. Write a brief review on your wiki and send the other team the link.
 \item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
 \end{enumerate}
 
-\section*{Iteration 4 (More advanced testing)}
+\section*{Iteration 4 (Continuous Integration)}
+In iteration 4, you will continue doing test-driven development with code review. You will extend the tool chain with a \emph{continuous integration} server. In this iteration you will also review another team's product and propose a small change to it.
+
+\begin{enumerate}
+\item Set up online continuous integration using \emph{Travis}. Travis should run all the tests on the latest version of the master branch each time a push is done to it. If there are any problems, Travis should email the team. If you are working in a private repository or on some other hosting than GitHub, you will need to set up your own integration server, for example Hudson or Jenkins.
+\item Do a little more development. Experiment with pushing code with errors so you see that the continuous integration works.
+\item Review another team's product. Do this by forking their repository and try to run their product. Is it easy to install? Does it work? Is there something in the code or documentation that could be improved? Identify some detail you would like to improve. Make the change to your forked repository and send them a pull request, asking them to integrate your changes. If they like your proposal they can integrate it, and otherwise just turn it down. Write a brief review on your wiki and send the other team the link.
+\item Tag the resulting version with \verb'v0.4'.
+\item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\end{enumerate}
+
+\section*{Iteration 5 (More advanced testing)}
 
 TBA: 
 Parameterized tests?
