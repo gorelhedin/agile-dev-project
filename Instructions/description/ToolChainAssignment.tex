@@ -8,7 +8,7 @@
 \VerbatimFootnotes
 
 \author{G{\"o}rel Hedin}
-\title{--DRAFT-- Assignment: Software Tool Chain}
+\title{Assignment: Software Tool Chain}
 \righthead{Course on Software Engineering and Cloud Computing\cr WASP}
 %\newcommand{\menuex}[1]{\begin{menuelist}#1\end{menuelist}}
 %\newenvironment{menulist}{\begin{tabular}[h]{@{}>{\bf}c*{5}{@{}>{$\rightarrow$\bf}c}}}{\end{tabular}}
@@ -19,118 +19,173 @@
 \newcommand{\code}[1]{\texttt{#1}}
 
 \begin{document}
-\maketitle[Version Control, Testing, Continuous Integration]
-
-Estimated time: 2 days. We suggest splitting this into four 4-hour meetings.
-
-Work in teams of 2-4 persons. Preferably, all team members should be at the same university so that you can work co-located. You will build a tool chain for one programming language, so try to form teams based on what language you are interested in, for example Java, Python, or C++. The only requirement on the language is that there is an implementation of xUnit for it, like JUnit, PyUnit, or CppUnit. (If you cannot agree on a single language, you might consider splitting the product into different parts, each written in a separate language.)
+\maketitle[]
 
 \section*{Introduction}
 
-The goal is that you should set up and experiment with a development tool chain with version control, issue tracking, automated test and build, code review, and continuous integration. If you are already very experienced in this area, take the opportunity to try out some new tools, and to coach your fellow team members.
+Estimated time: 2 days. We suggest splitting this into four 4-hour meetings.
+Work in the same teams as in earlier courses.
+%Preferably, all team members should be at the same university so that you can work co-located.
 
-You will work in iterations and in very small development steps. You will build a tiny code product and use a public GitHub repository. In principle, you could work on a private repository, and you could use another version control service like BitBucket or GitLab, but you would then have to find alternatives to some of the tools suggested below. After this assignment, you should be able to build a similar tool chain for your own work, and find tools suitable for the language you use. 
+You will develop a small Java product, and gradually extend a software development tool chain for it. The tool chain will include version control, issue tracking, automated test and build, code review, and continuous integration. You will use GitHub to host your common repository, and place a link to that repository on the common Google Docs page for this assignment. You should have got a link to that page in an email.
 
-For each of the iterations, work together as a team, and sit co-located. We expect each iteration to take around four hours, but some may be shorter and others longer.
+%build a software development tool chain for a small Java product.
+%one programming language, so try to form teams based on what language you are interested in, for example Java, Python, or C++. The only requirement on the language is that there is an implementation of xUnit for it, like JUnit, PyUnit, or CppUnit. (If you cannot agree on a single language, you might consider splitting the product into different parts, each written in a separate language.)
+After this assignment, you should be able to build a similar tool chain for your own work, and find tools suitable for the language you use. If you are already very experienced in this area, take the opportunity to try out some new tools, and to coach your fellow team members. 
 
-At the end of each iteration, your should reflect briefly on your work, and document this on a project wiki. 
+You will use agile development, working in iterations and in very small development steps.
+%You will build a tiny code product and use a public GitHub repository. In principle, you could work on a private repository, and you could use another version control service like BitBucket or GitLab, but you would then have to find alternatives to some of the tools suggested below.  
+For each of the iterations, work together as a team, and sit co-located. We expect each iteration to take around four hours. It is a good idea to find a room with a projector. At the end of each iteration, you should reflect briefly on your work, and document this on the GitHub wiki, for examiners to review. 
 
-As a result of the assignment, we expect a usable, well-tested, but very tiny product. As the product, we suggest a tool/game that can translate English words to \emph{Pig Latin}. See \url{https://en.wikipedia.org/wiki/Pig_Latin}. Feel free to select another product, but in that case, make sure you can provide something useful with very little development, and that the development can be split into many small features. One possibility is to take last fall's course as the starting point. However, in that case you should start with a fresh repository and gradually bring over code from your old one, so that everything in the new repository will be well tested.
+As a result of the assignment, we expect a very tiny product that is well designed, well tested, well documented, easy and possibly fun to use. As the product, you will build a tool/game that can translate English words to \emph{Pig Latin}. See \url{https://en.wikipedia.org/wiki/Pig_Latin}.\\
+% Feel free to select another product, but in that case, make sure you can provide something useful with very little development, and that the development can be split into many small features. One possibility is to take last fall's course as the starting point. However, in that case you should start with a fresh repository and gradually bring over code from your old one, so that everything in the new repository will be well tested.
 
-You are expected to complete at least up to and including Iteration 4.
+Getting started with the tools used in this assignment:
+\begin{itemize}
+\item \textbf{GitHub} Hello World: \url{https://guides.github.com/activities/hello-world/}
+\item \textbf{Ant} Hello World: \url{https://ant.apache.org/manual/tutorial-HelloWorldWithAnt.html}
+\item \textbf{Ant} tasks for JUnit: \url{https://ant.apache.org/manual/Tasks/junit.html}
+\item \textbf{JUnit} main site: \url{http://junit.org}
+\item \textbf{JUnit} getting started: \url{https://github.com/junit-team/junit4/wiki/Getting-started}
+\item \textbf{JaCoCo}: Java Code Coverage Library \url{http://www.eclemma.org/jacoco/}
+\item \textbf{codecov.io}: Online code coverage server \url{https://codecov.io}
+\item \textbf{Travis}: A continuous integration server \url{https://travis-ci.org}
+\end{itemize}
 
-\subsection*{Iteration 1 (Getting Started)}
-The goal of the first iteration is to get into the normal state of a working product, albeit with extremely little functionality.
+\newpage
+
+\section*{Iteration 1 (Getting Started)}
+The goal of the first iteration is to get into the normal state of a working product, albeit with extremely little functionality. Everybody in the team should be able to build and run the product on their own computer.
 
 \begin{enumerate}
 
-\item Set up a git repository for the product on GitHub. Make it public (you will need this later for \emph{Travis}, the continuous integration tool we will use). Add a \verb'README' and a \verb'.gitignore' file. Make sure there is a wiki and an issue tracker associated with the repository.
+\item Set up a public git repository for the product on GitHub. (We have chosen GitHub to make it possible to later use \emph{Travis} for continuous integration.) Add a \verb'README' and a \verb'.gitignore' file. Make sure there is a wiki and an issue tracker associated with the repository.
 
 \item Implement version \verb'v0.1' of your product. It should be the simplest possible version of the product that you can think of and it should be executable. For example, just read one word from the command line and output a constant pig latin word, disregarding the input. You should be able to create one working acceptance test case.
 
-\item Identify around 10 possible features to add to the product, and add these to the issue tracker. Try to make the features as small as possible, yet represent something of use for the end user. For bigger features, you can break them into smaller features later. Some example features:
+\item Implement a JUnit test for one of the methods in the  product.
+
+\item Implement a JUnit test case that performs an acceptance test, running the main program with given input and checking the resulting output.
+
+\item Implement an \emph{Ant} build script from which you can
+\begin{itemize}
+  \item compile the code and build a jar file
+  \item run all tests
+  \item clean away generated files
+\end{itemize}
+
+\item The \verb'README' file should explain how to build, run, and test the product. Make a new clone of the project and check that the instructions work. The \verb'README' should also document any platform dependencies and dependencies on installed tools. For any subsequent changes to the product, make sure to update the \verb'README' so that it is consistent.
+
+\item Check that everyone on the team can a) commit, push, and pull from the common GitHub repository, b) build and run the product on their computer, c) understand all the files.
+
+\item Tag the resulting version with \verb'v0.1'.
+
+\item Have a joint brainstorming session to identify around 10 possible features to add to the product, and add these to the issue tracker. Try to make the features as small as possible, yet represent something of use for the end user. You will implement some of these issues in later iterations. For bigger features, you can break them into smaller features later. Some example features:
 \begin{itemize}
 \item translate a single word to Pig Latin
 \item handle many words in a row, not just a single word
 \item read from an input file
 \item treat punctuation correctly
 \item support a reverse translator
+\item extend the Pig Latin rules
 \item make it into a game
 \item ...
 \end{itemize}
 
-\item Implement an xUnit test for one of the methods in the  product.
+\item Discuss briefly, and reflect on what you have done as a team in this iteration. What was your background expertise on version control systems? What tasks were easy? Were there problems that were difficult to sort out? What surprised you? Document your reflections on the wiki.
 
-\item Implement one acceptance test. For example, run the program with some given input and check the resulting output. Use a script, or do it via xUnit.
-
-\item Implement a build script from which you can
-\begin{itemize}
-  \item build the product (produce an executable file, like a jar file or an exe file)
-  \item clean away generated files
-  \item run all tests
-\end{itemize}
-
-\item The \verb'README' file should explain how to build, run, and test the product. Make a new clone of the project and check that the instructions work. The \verb'README' should also document any platform dependencies and dependencies on installed tools. For any subsequent changes to the product, make sure to update the \verb'README' so that it is consistent.
-
-\item Tag the resulting version with \verb'v0.1'.
-
-\item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\item Add a link to your repository to the common Google Doc page for this assignment.
 \end{enumerate}
 
+\textbf{Time left?} Start on or prepare for iteration 2.
+
+\newpage
+
 \section*{Iteration 2 (Test-Driven Development)}
-In the second iteration, you should implement some of the features you have listed on your issue tracker. You should practice working in \emph{small steps} using \emph{test-driven development}, and \emph{integrating often}. Try to commit often, after completing a small step. As soon as you have a small improvement and all tests work, push your changes to the common repository. After this iteration, we expect that
+In the second iteration, you will implement some of the features you have listed on your issue tracker. You should practice working in \emph{small steps} using \emph{test-driven development}, and \emph{integrating often}. Try to commit often, after completing a small step. As soon as you have a small improvement and all tests work, push your changes to the common repository. After this iteration, we expect that
 \begin{itemize}
 \item each team member should have pushed several times
 \item the product should have a little more functionality than \verb'v0.1'
-\item there should be good test cases with good coverage for each version.
+\item there should be good test cases with what you believe is good coverage.
 \item each version should build and test without failures.
 \end{itemize}
 
 Do the following in this iteration:
 
 \begin{enumerate}
-\item Work in parallel so that you get some merge conflicts. Communicate with each other so everyone knows what goes on, who implements what features, etc. Feel free to pair program if you like.
-\item Use Test-Driven Development. Add both acceptance and JUnit tests.
-\item Generalize your test harness as needed.
-\item Add issues as needed, for bugs, refactorings, and other work unrelated to your current issue, and for new features that you come to think of. 
-\item Commit and push often, but only when your sandbox is ''green'' (all tests pass), and when you have recently pulled and merged the latest changes from the common repository. For each commit, relate to the relevant issue in the commit comment (e.g., using "see ..." or "fixes ...").
+\item Work in parallel so that you get some merge conflicts. Communicate with each other so everyone knows what goes on, who implements what features, etc.
+\item Use Test-Driven Development. Add both acceptance and unit tests.
+\item Generalize your handling of acceptance tests so that new tests can be added simply by adding new input/output files.
+\item Whenever relevant, add more issues. This could be bugs or refactorings that are related to other things than the issue you are currently working on, or it could be new features that you come to think of. 
+\item Commit and push often, but only when your sandbox is ''green'' (all tests pass). For each commit, relate to the relevant issue in the commit comment (e.g., using "see ..." or "fixes ...").
+\item Pull often to get the latest changes from the common repository, and merge with your work.
 \item If you didn't get any merge conflicts naturally, provoke some, just to get the hang of how to handle them.
 %\item Experiment with git rebase to collapse commits before pushing.
 \item Tag the resulting version with \verb'v0.2'.
 \item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\item Add a comment on the Google Docs page that you have completed iteration 2.
 \end{enumerate}
 
+\textbf{Time left?} Try out additional features in JUnit. See Usage and Idioms, and Third-Party Extensions at \url{http://junit.org/junit4/}:
+\begin{itemize}
+\item \textbf{Test fixtures} Use  \verb'@Before' annotations to set up the same data structure ("fixture") before each test in a class is run.
+\item \textbf{Mock objects} Experiment with creating mock objects to test parts of the code in isolation.
+\item \textbf{Matchers} Experiment with \verb'matchers' and \verb'assertThat' to get more readable test cases, and better error messages when tests fail.
+\item \textbf{Parameterized tests} Experiment with creating parameterized tests.
+\item \textbf{Random testing} Experiment with random testing using property-based "Theories" and QuickCheck-style random input generators.
+
+\end{itemize}
+
+
+\newpage
+
+
 \section*{Iteration 3 (Code Review)}
-In iteration 3, you will continue doing test-driven development, but now also focus on \emph{clean code} (well designed, easy to understand). You will extend the tool chain with \emph{code review}.
+In iteration 3, you will continue doing test-driven development, but now also focus on \emph{clean code} (well designed, easy to understand). You will extend the tool chain with \emph{code review}, and work with \emph{feature-branches} in the git workflow.
 
 After this iteration, each team member should have been involved in both sides of a code review, and the code should be beautiful and well tested.
 
 \begin{enumerate}
-\item Discuss the current design. Is the code clean? Is there a need for larger refactorings? Do you need to agree on some design issues or coding conventions? Is there a need for some design documentation, like a photo of a design on the blackboard? (If so, you can upload it to the wiki.)
-\item Continue the development, but now all changes should be done on separate \emph{feature branches}, and merged into the master branch only after code review. After pushing your commits on the feature branch, ask for code review by creating a so called \emph{pull request} on GitHub (on GitLab it is called \emph{merge request}). Experiment with some discussion back and forth between the reviewer and the author.
+\item Discuss the current design. Is the code clean? Is there a need for larger refactorings? Do you need to agree on some design issues or coding conventions?
+\item Continue the development, but now all changes should be done on separate \emph{feature branches}, and merged into the master branch only after code review. After pushing your commits on the feature branch, ask for code review by creating a so called \emph{pull request} on GitHub. Experiment with some discussion back and forth between the reviewer and the author.
 \item Tag the resulting version with \verb'v0.3'.
 \item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+\item Add a comment on the Google Docs page that you have completed iteration 3.
 \end{enumerate}
+
+\textbf{Time left?}
+
+\begin{itemize}
+\item \textbf{Merge vs. Rebase} Experiment with using \verb'git merge' and \verb'git rebase' to understand the difference.
+\item \textbf{Code coverage} Try out the tool JaCoCo to check your code coverage. 
+\item \textbf{Metrics} Use JaCoCo to compute the cyclomatic complexity (CC) of your code.
+\end{itemize}
+
+\newpage
 
 \section*{Iteration 4 (Continuous Integration)}
 In iteration 4, you will continue doing test-driven development with code review. You will extend the tool chain with a \emph{continuous integration} server. In this iteration you will also review another team's product and propose a small change to it.
 
 \begin{enumerate}
 \item Set up online continuous integration using \emph{Travis}. Travis should run all the tests on the latest version of the master branch each time a push is done to it. If there are any problems, Travis should email the team. If you are working in a private repository or on some other hosting than GitHub, you will need to set up your own integration server, for example Hudson or Jenkins.
-\item Do a little more development. Experiment with pushing code with errors so you see that the continuous integration works.
+\item Continue the development. Experiment with pushing code with errors so you see that the continuous integration works.
 \item Review another team's product. Do this by forking their repository and try to run their product. Is it easy to install? Does it work? Is there something in the code or documentation that could be improved? Identify some detail you would like to improve. Make the change to your forked repository and send them a pull request, asking them to integrate your changes. If they like your proposal they can integrate it, and otherwise just turn it down. Write a brief review on your wiki and send the other team the link.
-\item Tag the resulting version with \verb'v0.4'.
+\item When you think your product is finished, tag the resulting version with \verb'v0.4', and upload an executable version of it (a jar file) to your GitHub repository.
 \item Reflect and discuss briefly what you have done in this iteration. What went well? What would you like to improve or do differently? What surprised you? Document your reflections on the wiki.
+
+\item Discuss the assignment as a whole. What is your general opinion on the assignment: Was it worthwhile? Too easy or too difficult? Do you have suggestions for improvements? How much of the optional tasks did you do? Document your reflections on the Google Docs page, and add a note that you have completed the assignment.
+
 \end{enumerate}
 
-\section*{Iteration 5 (More advanced testing)}
+\textbf{Time left?}
 
-TBA: 
-Parameterized tests?
-Random tests?
-Theories?
-Code coverage?
-Metrics?
+\begin{itemize}
+\item \textbf{Continuous code coverage} Use the online server codecov.io to integrate JaCoCo code coverage into your tool chain.
+\item \textbf{Docker} Try running a Docker image to understand how it works. Then create a Docker image for you product, and upload it to your GitHub repo.
+\end{itemize}
+ 
+
+
 
 
 
